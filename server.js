@@ -6,6 +6,7 @@ const colors = require("colors");
 const userRoutes = require("./Routes/userRoutes");
 const chatRoutes = require("./Routes/chatRoutes");
 const messageRoutes = require("./Routes/messageRoutes");
+const cors = require("cors");
 
 const { chats } = require("./data/data");
 
@@ -15,26 +16,10 @@ app.use(express.json()); // to accept json data
 
 connectDB();
 
-app.use(function (req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-  );
-
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "X-Requested-With,content-type"
-  );
-
-  res.setHeader("Access-Control-Allow-Credentials", true);
-
-  next();
-});
-
-app.use("/api/user", userRoutes);
-app.use("/api/chat", chatRoutes);
-app.use("/api/message", messageRoutes);
+app.use(cors());
+app.use("/api/user", cors, userRoutes);
+app.use("/api/chat", cors, chatRoutes);
+app.use("/api/message", cors, messageRoutes);
 
 app.use(notFound);
 
