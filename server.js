@@ -16,7 +16,7 @@ app.use(express.json()); // to accept json data
 connectDB();
 
 app.use(function (req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", ["*","/api/*"]);
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET, POST, OPTIONS, PUT, PATCH, DELETE"
