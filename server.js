@@ -47,6 +47,10 @@ io.on("connection", (socket) => {
     socket.join(room);
   });
 
+  socket.on("leave room", (room) => {
+    socket.leave(room);
+  });
+
   socket.on("typing", (room) => {
     socket.in(room).emit("typing");
   });
